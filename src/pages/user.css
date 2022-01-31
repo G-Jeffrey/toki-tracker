@@ -1,0 +1,38 @@
+@media all and (min-width: 668px) {
+  .Login {
+    padding: 60px 0;
+  }
+  .Login form {
+    margin: 0 auto;
+    max-width: 320px;
+  }
+}
+@media all and (max-width: 668px) {
+  .left-image{
+    opacity: 0;
+  }
+
+}
+.Login{
+  width:65%;
+  
+}
+.left-image{
+  width: 30%;
+  background: url('http://localhost:3000/images/toki.png') no-repeat center;
+  background-size: 100%;
+  background-color: black;
+}
+.login-layout{
+  display: flex;
+  width: 100%;
+}
+.Login form{
+  width:60%;
+}
+.invalid{
+  text-align: center;
+  font-weight: bold;
+  font-size: large;
+  color: rgb(201, 17, 17);
+}

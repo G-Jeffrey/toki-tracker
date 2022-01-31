@@ -1,0 +1,30 @@
+.cta {
+    width: 100%;
+    font-size: 1em;
+    text-align: center;
+}
+.card_padding {
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+.vendors {
+    text-align: center;
+    font-size: 5vh;
+    padding: 10px;
+}
+.rounded_logo {
+    background-color: red;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+}
+.disclaimer {
+    text-align: right;
+    font-style: italic;
+    color: rgb(63, 63, 63);
+    margin-bottom: 20px;
+}
+.carousel {
+    max-width: 3000px;
+    margin: auto;
+}

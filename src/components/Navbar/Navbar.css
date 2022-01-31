@@ -1,0 +1,7 @@
+#misc-button{
+    background-color: white;
+    color: black;
+}
+#misc-button:hover{
+    background-color: rgb(230, 230, 230);
+}
