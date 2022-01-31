@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Form, Button, Spinner, InputGroup } from "react-bootstrap";
-import "./user.css";
-
+import "./user.css"; 
 const backendHost = process.env.BACKEND_URL;
 
 const Login = () => {
-  console.log(backendHost);
   const [user_auth, setUser] = useState('');
   const [password, setPassword] = useState('');
   const [invalid, setInvalid] = useState('');
