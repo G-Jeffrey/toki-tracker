@@ -98,7 +98,7 @@ const LandingPage = () => {
                         <Col md={6}>
                             <div className="card_padding">
                                 <Card>
-                                    <Card.Img variant="top" src="https://media.baamboozle.com/uploads/images/329012/1618828221_43191_gif-url.gif" />
+                                    <Card.Img variant="top" src="images/box_pusheen.gif" />
                                     <CardHeader>No more unexpected packages!</CardHeader>
                                 </Card>
                             </div>
@@ -106,7 +106,7 @@ const LandingPage = () => {
                         <Col md={6}>
                             <div className="card_padding">
                                 <Card>
-                                    <Card.Img variant="top" src="https://c.tenor.com/d9eC2yAFVZUAAAAC/moneypusheen-gil.gif" />
+                                    <Card.Img variant="top" src="images/money_pusheen.gif" />
                                     <CardHeader>Track your spendings</CardHeader>
                                     <Card.Text></Card.Text>
                                 </Card>
