@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Form, Button, Spinner ,InputGroup } from "react-bootstrap";
 import "./user.css";
 
-const backendHost = process.env.BACKEND_URL;
+const backendHost = process.env.REACT_APP_BACKEND_URL;
 const Signup = () =>{
     // const [state, dispatch] = useReducer(loginReducer, initalState)
     const [username, setUsername] = useState('');

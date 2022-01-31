@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Table, Row, Col, Container, FormControl, FloatingLabel } from 'react-bootstrap';
 import axios from 'axios';
-const backendHost = process.env.BACKEND_URL;
+const backendHost = process.env.REACT_APP_BACKEND_URL;
 const Profile = ({ user_id, userparams }) => {
     const [start_date, setStartDate] = useState('2000-01-01');
     const [data, setData] = useState({});

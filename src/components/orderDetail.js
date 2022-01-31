@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Card, Row, Col, Container, Button, Modal, FloatingLabel, FormControl, Form, Table } from "react-bootstrap";
 import { AiOutlineEdit } from "react-icons/ai";
 import axios from 'axios';
-const backendHost = process.env.BACKEND_URL;
+const backendHost = process.env.REACT_APP_BACKEND_URL;
 const OrderDetail = ({ order_id, order_name, vendor, total, subtotal, tax, savings, shipping, arrival_date, date_of_purchase, image_url, items, user_id, reloadOrders, editOrder, setEditOrder, editParams }) => {
     items = parseInt(items); 
     date_of_purchase = (new Date(date_of_purchase)).toISOString().split('T')[0];

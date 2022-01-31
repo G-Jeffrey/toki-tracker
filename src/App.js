@@ -10,7 +10,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Profile from './pages/profile';
 import Items from './pages/items';
 const backendHost = process.env.REACT_APP_BACKEND_URL;
-console.log(backendHost)
 let cookies = {};
 function getCookie(string) {
   string = string.split(';');

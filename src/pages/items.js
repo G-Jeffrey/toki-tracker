@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Col, Row, Container, Table, Form, FloatingLabel, FormControl, InputGroup, Button, Modal, Spinner } from "react-bootstrap";
 import { MdSearch, MdDelete, MdEdit } from "react-icons/md";
-const backendHost = process.env.BACKEND_URL;
+const backendHost = process.env.REACT_APP_BACKEND_URL;
 const Items = ({ user_id }) => {
     const [query, setQuery] = useState('');
     const [start_date, setStartDate] = useState('2000-01-01');

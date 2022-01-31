@@ -9,7 +9,7 @@ import OrderDetail from '../components/orderDetail';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-const backendHost = process.env.BACKEND_URL;
+const backendHost = process.env.REACT_APP_BACKEND_URL;
 const Orders = ({ user_id }) => {
     const [addOrder, setAddOrder] = useState(false);
     const [title, setTitle] = useState("");
