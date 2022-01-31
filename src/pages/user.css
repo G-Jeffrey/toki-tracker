@@ -19,7 +19,7 @@
 }
 .left-image{
   width: 30%;
-  background: url('http://localhost:3000/images/toki.png') no-repeat center;
+  background: url('https://toki-tracker.herokuapp.com/images/toki.png') no-repeat center;
   background-size: 100%;
   background-color: black;
 }

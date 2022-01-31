@@ -4,9 +4,9 @@ import { Form, Button, Spinner, InputGroup } from "react-bootstrap";
 import "./user.css";
 
 const backendHost = process.env.BACKEND_URL;
-console.log(backendHost);
+
 const Login = () => {
-  // const [state, dispatch] = useReducer(loginReducer, initalState)
+  console.log(backendHost);
   const [user_auth, setUser] = useState('');
   const [password, setPassword] = useState('');
   const [invalid, setInvalid] = useState('');
