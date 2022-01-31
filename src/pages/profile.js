@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React, { useEffect, useState } from 'react';
-import { Table, Row, Col, Container, FormControl, FloatingLabel } from 'react-bootstrap';
+import { Table, Row, Col, Container, FormControl, FloatingLabel, Placeholder } from 'react-bootstrap';
 import axios from 'axios';
 const backendHost = process.env.REACT_APP_BACKEND_URL;
 const Profile = ({ user_id, userparams }) => {
@@ -72,7 +72,6 @@ const Profile = ({ user_id, userparams }) => {
 
     }, [loading])
     return (
-
         <>
             <div className='mt-3 p-4 mb-4'>
                 <center>
@@ -86,101 +85,111 @@ const Profile = ({ user_id, userparams }) => {
                         <FloatingLabel label="Start Date">
                             <FormControl
                                 type="date"
-                                onChange={(e)=>{
+                                onChange={(e) => {
                                     setStartDate(e.target.value);
                                     setLoading(true);
                                 }}
-                                max={end_date}/>
+                                max={end_date} />
                         </FloatingLabel>
                     </Col>
                     <Col xs={3}>
                         <FloatingLabel label="End Date">
                             <FormControl
                                 type="date"
-                                onChange={(e)=>{
+                                onChange={(e) => {
                                     setEndDate(e.target.value);
                                     setLoading(true);
                                 }}
-                                min={start_date}/>
+                                min={start_date} />
                         </FloatingLabel>
                     </Col>
                 </Row>
-                <Row className="g-3 mb-3">
-                    <Col>
-                        <Table striped bordered hover>
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>
-                                        Items
-                                    </th>
-                                    <th>
-                                        Cost
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th>Keyboards</th>
-                                    <td>{data['Keyboard'] ? data['Keyboard'][0] : '0'}</td>
-                                    <td>${data['Keyboard'] ? data['Keyboard'][1].toFixed(2) : '0.00'}</td>
-                                </tr>
-                                <tr>
-                                    <th>Keycaps</th>
-                                    <td>{data['Keycaps'] ? data['Keycaps'][0] : '0'}</td>
-                                    <td>${data['Keycaps'] ? data['Keycaps'][1].toFixed(2) : '0.00'}</td>
-                                </tr>
-                                <tr>
-                                    <th>Switches</th>
-                                    <td>{data['Switches'] ? data['Switches'][0] : '0'}</td>
-                                    <td>${data['Switches'] ? data['Switches'][1].toFixed(2) : '0.00'}</td>
-                                </tr>
-                                <tr>
-                                    <th>Artisans</th>
-                                    <td>{data['Artisans'] ? data['Artisans'][0] : '0'}</td>
-                                    <td>${data['Artisans'] ? data['Artisans'][1].toFixed(2) : '0.00'}</td>
-                                </tr>
-                                <tr>
-                                    <th>Misc</th>
-                                    <td>{data['Misc'] ? data['Misc'][0] : '0'}</td>
-                                    <td>${data['Misc'] ? data['Misc'][1].toFixed(2) : '0.00'}</td>
-                                </tr>
-                                <tr>
-                                    <th>Total</th>
-                                    <th>{data['Total'] ? data['Total'][0] : "0"}</th>
-                                    <th>${data['Total'] ? data['Total'][1].toFixed(2) : "0.00"}</th>
-                                </tr>
-                            </tbody>
-                        </Table>
-                    </Col>
-                    <Col>
-                        <Table striped bordered>
-                            <thead >
-                                <tr>
-                                    <th></th>
-                                    <th>
-                                        Orders
-                                    </th>
-                                    <th>
-                                        Items
-                                    </th>
-                                    <th>
-                                       Total Cost
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {Object.keys(vendors).map((vendor, i) =>
-                                    <tr key={i}>
-                                        <th>{vendor}</th>
-                                        <td>{vendors[vendor][0]}</td>
-                                        <td>{vendors[vendor][1]}</td>
-                                        <td>${vendors[vendor][2]}</td>
-                                    </tr>)}
-                            </tbody>
-                        </Table>
-                    </Col>
-                </Row>
+                {loading ?
+                    <Placeholder as="p" animation="glow" className='m-4'>
+                        <Placeholder xs={12} />
+                        <Placeholder xs={12} />
+                        <Placeholder xs={12} />
+                        <Placeholder xs={12} />
+                        <Placeholder xs={12} />
+                        <Placeholder xs={12} />
+                    </Placeholder> :
+                    <Row className="g-3 mb-3">
+                        <Col>
+                            <Table striped bordered hover>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>
+                                            Items
+                                        </th>
+                                        <th>
+                                            Cost
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>Keyboards</th>
+                                        <td>{data['Keyboard'] ? data['Keyboard'][0] : '0'}</td>
+                                        <td>${data['Keyboard'] ? data['Keyboard'][1].toFixed(2) : '0.00'}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Keycaps</th>
+                                        <td>{data['Keycaps'] ? data['Keycaps'][0] : '0'}</td>
+                                        <td>${data['Keycaps'] ? data['Keycaps'][1].toFixed(2) : '0.00'}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Switches</th>
+                                        <td>{data['Switches'] ? data['Switches'][0] : '0'}</td>
+                                        <td>${data['Switches'] ? data['Switches'][1].toFixed(2) : '0.00'}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Artisans</th>
+                                        <td>{data['Artisans'] ? data['Artisans'][0] : '0'}</td>
+                                        <td>${data['Artisans'] ? data['Artisans'][1].toFixed(2) : '0.00'}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Misc</th>
+                                        <td>{data['Misc'] ? data['Misc'][0] : '0'}</td>
+                                        <td>${data['Misc'] ? data['Misc'][1].toFixed(2) : '0.00'}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Total</th>
+                                        <th>{data['Total'] ? data['Total'][0] : "0"}</th>
+                                        <th>${data['Total'] ? data['Total'][1].toFixed(2) : "0.00"}</th>
+                                    </tr>
+                                </tbody>
+                            </Table>
+                        </Col>
+                        <Col>
+                            <Table striped bordered>
+                                <thead >
+                                    <tr>
+                                        <th></th>
+                                        <th>
+                                            Orders
+                                        </th>
+                                        <th>
+                                            Items
+                                        </th>
+                                        <th>
+                                            Total Cost
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {Object.keys(vendors).map((vendor, i) =>
+                                        <tr key={i}>
+                                            <th>{vendor}</th>
+                                            <td>{vendors[vendor][0]}</td>
+                                            <td>{vendors[vendor][1]}</td>
+                                            <td>${vendors[vendor][2]}</td>
+                                        </tr>)}
+                                </tbody>
+                            </Table>
+                        </Col>
+                    </Row>
+                }
             </Container>
         </>
     );

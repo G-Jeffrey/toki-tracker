@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Form, Button, Container, InputGroup, FormControl, Modal, FloatingLabel, Col, Row, Spinner } from "react-bootstrap";
+import { Form, Button, Container, InputGroup, FormControl, Modal, FloatingLabel, Col, Row, Spinner, Placeholder } from "react-bootstrap";
 import { MdSearch } from "react-icons/md";
 import { IoIosAdd } from "react-icons/io";
 import './orders.css'
@@ -23,7 +23,7 @@ const Orders = ({ user_id }) => {
     const [imageData, setImageData] = useState(null);
     const [overLimit, setOverLimit] = useState(false);
     const [orders, setOrders] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [load, setLoad] = useState(false);
     const [sortQuery, setSortQuery] = useState("cost");
     const [order_id, setOrder_id] = useState('');
@@ -173,52 +173,65 @@ const Orders = ({ user_id }) => {
                         </Col>
                     </Col>
                 </Row>
-                {orders.map(order =>
-                    <Row className="g-3 mb-3" key={order[0]['order_id']}>
-                        <Col sm={12} md={6} data-aos='fade-right' data-aos-easing="ease-in-sine">
-                            <OrderDetail
-                                order_id={order[0]['order_id']}
-                                order_name={order[0]['order_name']}
-                                vendor={order[0]['vendor']}
-                                total={order[0]['total']}
-                                subtotal={order[0]['cost']}
-                                tax={order[0]['tax']}
-                                shipping={order[0]['shipping']}
-                                savings={order[0]['savings']}
-                                arrival_date={order[0]['arrival_date']}
-                                date_of_purchase={order[0]['date_of_purchase']}
-                                items={order[0]['items']}
-                                image_url={order[0]['image_url']}
-                                user_id={order[0]['user_id']}
-                                reloadOrders={setLoading}
-                                editOrder={editOrder}
-                                editParams={[setTitle, setVendor, setPurchaseDate, setArrivalDate, setTax, setSavings, setShipping, setOrder_id]}
-                                setEditOrder={setEditOrder} />
-                        </Col>
-                        {order.length > 1 ? (
-                            <Col sm={12} md={6} data-aos='fade-left' data-aos-easing="ease-in-sine">
+                {loading ?
+                    <Placeholder as="p" animation="glow" className='m-4'>
+                        <Placeholder xs={12} />
+                        <Placeholder xs={12} />
+                        <Placeholder xs={12} />
+                        <Placeholder xs={12} />
+                        <Placeholder xs={12} />
+                        <Placeholder xs={12} />
+                        <Placeholder xs={12} />
+                        <Placeholder xs={12} />
+                        <Placeholder xs={12} />
+                        <Placeholder xs={12} />
+                    </Placeholder> :
+                    orders.map(order =>
+                        <Row className="g-3 mb-3" key={order[0]['order_id']}>
+                            <Col sm={12} md={6} data-aos='fade-right' data-aos-easing="ease-in-sine">
                                 <OrderDetail
-                                    order_id={order[1]['order_id']}
-                                    order_name={order[1]['order_name']}
-                                    vendor={order[1]['vendor']}
-                                    total={order[1]['total']}
-                                    subtotal={order[1]['cost']}
-                                    tax={order[1]['tax']}
-                                    shipping={order[1]['shipping']}
-                                    savings={order[1]['savings']}
-                                    arrival_date={order[1]['arrival_date']}
-                                    date_of_purchase={order[1]['date_of_purchase']}
-                                    items={order[1]['items']}
-                                    image_url={order[1]['image_url']}
-                                    user_id={order[1]['user_id']}
+                                    order_id={order[0]['order_id']}
+                                    order_name={order[0]['order_name']}
+                                    vendor={order[0]['vendor']}
+                                    total={order[0]['total']}
+                                    subtotal={order[0]['cost']}
+                                    tax={order[0]['tax']}
+                                    shipping={order[0]['shipping']}
+                                    savings={order[0]['savings']}
+                                    arrival_date={order[0]['arrival_date']}
+                                    date_of_purchase={order[0]['date_of_purchase']}
+                                    items={order[0]['items']}
+                                    image_url={order[0]['image_url']}
+                                    user_id={order[0]['user_id']}
                                     reloadOrders={setLoading}
                                     editOrder={editOrder}
                                     editParams={[setTitle, setVendor, setPurchaseDate, setArrivalDate, setTax, setSavings, setShipping, setOrder_id]}
                                     setEditOrder={setEditOrder} />
                             </Col>
-                        ) : ""}
-                    </Row>
-                )}
+                            {order.length > 1 ? (
+                                <Col sm={12} md={6} data-aos='fade-left' data-aos-easing="ease-in-sine">
+                                    <OrderDetail
+                                        order_id={order[1]['order_id']}
+                                        order_name={order[1]['order_name']}
+                                        vendor={order[1]['vendor']}
+                                        total={order[1]['total']}
+                                        subtotal={order[1]['cost']}
+                                        tax={order[1]['tax']}
+                                        shipping={order[1]['shipping']}
+                                        savings={order[1]['savings']}
+                                        arrival_date={order[1]['arrival_date']}
+                                        date_of_purchase={order[1]['date_of_purchase']}
+                                        items={order[1]['items']}
+                                        image_url={order[1]['image_url']}
+                                        user_id={order[1]['user_id']}
+                                        reloadOrders={setLoading}
+                                        editOrder={editOrder}
+                                        editParams={[setTitle, setVendor, setPurchaseDate, setArrivalDate, setTax, setSavings, setShipping, setOrder_id]}
+                                        setEditOrder={setEditOrder} />
+                                </Col>
+                            ) : ""}
+                        </Row>
+                    )}
             </Container>
 
             <Modal show={addOrder || editOrder}

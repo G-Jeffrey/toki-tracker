@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Col, Row, Container, Table, Form, FloatingLabel, FormControl, InputGroup, Button, Modal, Spinner } from "react-bootstrap";
+import { Col, Row, Container, Table, Form, FloatingLabel, FormControl, InputGroup, Button, Modal, Spinner, Placeholder } from "react-bootstrap";
 import { MdSearch, MdDelete, MdEdit } from "react-icons/md";
 const backendHost = process.env.REACT_APP_BACKEND_URL;
 const Items = ({ user_id }) => {
@@ -90,10 +90,10 @@ const Items = ({ user_id }) => {
                 }
                 setItems(items);
             }
-
+            setLoading(false);
         });
         getOrders();
-        setLoading(false);
+        
     }, [loading]);
     return (
         <>
@@ -104,20 +104,20 @@ const Items = ({ user_id }) => {
                             <InputGroup size='lg' >
                                 <FormControl
                                     style={{
-                                        borderTopLeftRadius:'25px',
+                                        borderTopLeftRadius: '25px',
                                         borderBottomLeftRadius: '25px'
                                     }}
                                     type='text'
                                     value={query}
-                                    onChange={(e) =>{
+                                    onChange={(e) => {
                                         setQuery(e.target.value);
                                         setLoading(true);
                                     }} />
                                 <Button variant='outline-dark'
-                                style={{
-                                    borderTopRightRadius:'25px',
-                                    borderBottomRightRadius: '25px'
-                                }}><MdSearch size='30px' /></Button>
+                                    style={{
+                                        borderTopRightRadius: '25px',
+                                        borderBottomRightRadius: '25px'
+                                    }}><MdSearch size='30px' /></Button>
                             </InputGroup>
                         </FloatingLabel>
                     </Col>
@@ -144,46 +144,55 @@ const Items = ({ user_id }) => {
                         </FloatingLabel>
                     </Col>
                 </Row>
-                <Table striped borderless hover size="md">
-                    <thead>
-                        <tr>
-                            <th>Item</th>
-                            <th>Order</th>
-                            <th>Vendor</th>
-                            <th>Category</th>
-                            <th>Price</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody style={{ verticalAlign: 'middle' }}>
-                        {Object.keys(items).map((item_id, i) =>
-                            <tr key={i}>
-                                <td>{items[item_id][0]}</td>
-                                <td>{items[item_id][1]}</td>
-                                <td>{items[item_id][2]}</td>
-                                <td>{items[item_id][3]}</td>
-                                <td>${(parseFloat(items[item_id][4])).toFixed(2)}</td>
-                                <td>
-                                    <Button variant='none' onClick={() => {
-                                        setDeleteDetails([items[item_id][0], items[item_id][1]])
-                                        setConfirmation([items[item_id][5], item_id]);
-                                    }}>
-                                        <MdDelete size='17px' />
-                                    </Button>
-                                    <Button variant='none' onClick={() => {
-                                        setPrice(parseFloat(items[item_id][4]));
-                                        setCategory(items[item_id][3]);
-                                        setConfirmation([items[item_id][5], item_id]);
-                                        setItemName(items[item_id][0]);
-                                    }}>
-                                        <MdEdit size='17px' />
-                                    </Button>
-                                </td>
+                {loading ?
+                    <Placeholder as="p" animation="glow" className='m-4'>
+                        <Placeholder xs={12} />
+                        <Placeholder xs={12} />
+                        <Placeholder xs={12} />
+                        <Placeholder xs={12} />
+                        <Placeholder xs={12} />
+                        <Placeholder xs={12} />
+                    </Placeholder> :
+                    <Table striped borderless hover size="md">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Order</th>
+                                <th>Vendor</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th></th>
                             </tr>
-                        )}
-
-                    </tbody>
-                </Table>
+                        </thead>
+                        <tbody style={{ verticalAlign: 'middle' }}>
+                            {Object.keys(items).map((item_id, i) =>
+                                <tr key={i}>
+                                    <td>{items[item_id][0]}</td>
+                                    <td>{items[item_id][1]}</td>
+                                    <td>{items[item_id][2]}</td>
+                                    <td>{items[item_id][3]}</td>
+                                    <td>${(parseFloat(items[item_id][4])).toFixed(2)}</td>
+                                    <td>
+                                        <Button variant='none' onClick={() => {
+                                            setDeleteDetails([items[item_id][0], items[item_id][1]])
+                                            setConfirmation([items[item_id][5], item_id]);
+                                        }}>
+                                            <MdDelete size='17px' />
+                                        </Button>
+                                        <Button variant='none' onClick={() => {
+                                            setPrice(parseFloat(items[item_id][4]));
+                                            setCategory(items[item_id][3]);
+                                            setConfirmation([items[item_id][5], item_id]);
+                                            setItemName(items[item_id][0]);
+                                        }}>
+                                            <MdEdit size='17px' />
+                                        </Button>
+                                    </td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </Table>
+                }
             </Container>
             <Modal size="lg" show={confirmation.length > 1 && itemName.length === 0} onHide={() => setConfirmation([])}>
                 <Modal.Header closeButton>

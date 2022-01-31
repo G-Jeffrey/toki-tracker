@@ -6,7 +6,6 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
     <React.StrictMode>
-      <head><title>Toki</title></head>
       <App />
     </React.StrictMode>,
     document.getElementById('root')
