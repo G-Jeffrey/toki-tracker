@@ -11,7 +11,7 @@ const Profile = ({ user_id, userparams }) => {
     const [vendors, setVendors] = useState({});
     useEffect(() => {
         const getItems = (async () => {
-            const res = await axios.get(`${backendHost}items`, {
+            const res = await axios.get(`${backendHost}/items`, {
                 params: {
                     user_id,
                     start_date,
@@ -40,7 +40,7 @@ const Profile = ({ user_id, userparams }) => {
             } else {
                 alert('Internal server error, please try again later.')
             }
-            let data = await axios.get(`${backendHost}orders`, {
+            let data = await axios.get(`${backendHost}/orders`, {
                 params: {
                     user_id,
                     start_date: start_date,
