@@ -6,7 +6,7 @@ const backendHost = process.env.REACT_APP_BACKEND_URL;
 const Profile = ({ user_id, userparams }) => {
     const [start_date, setStartDate] = useState('2000-01-01');
     const [data, setData] = useState({});
-    const [end_date, setEndDate] = useState('2100-01-01');
+    const [end_date, setEndDate] = useState((new Date()).toISOString().split('T')[0]);
     const [loading, setLoading] = useState(true);
     const [vendors, setVendors] = useState({});
     useEffect(() => {
@@ -80,31 +80,29 @@ const Profile = ({ user_id, userparams }) => {
                 </center>
             </div>
             <Container>
+                <Row className='text-center g-2 mb-2'><Col>Purchase Date</Col></Row>
                 <Row className="g-3 mb-3">
                     <Col xs={{ offset: 3, span: 3 }}>
-                        <FloatingLabel label="Purchase Date">
+                        <FloatingLabel label="After">
                             <FormControl
-                                as = 'select'
+                                type="date"
                                 onChange={(e) => {
                                     setStartDate(e.target.value);
                                     setLoading(true);
-                                }}>
-                                    <option value='now'>Days</option>
-                                    <option value='now'>Week</option>
-                                    <option value='now'>Month</option>
-                                    <option value='now'>Year</option>
-                                </FormControl>
+                                }}
+                                max={end_date}/>
                         </FloatingLabel>
                     </Col>
                     <Col xs={3}>
-                        <FloatingLabel label="End Date">
+                        <FloatingLabel label="Before">
                             <FormControl
                                 type="date"
                                 onChange={(e) => {
                                     setEndDate(e.target.value);
                                     setLoading(true);
                                 }}
-                                min={start_date} />
+                                min={start_date}
+                                max = {(new Date()).toISOString().split('T')[0]}/>
                         </FloatingLabel>
                     </Col>
                 </Row>
