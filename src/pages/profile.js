@@ -72,7 +72,7 @@ const Profile = ({ user_id, userparams }) => {
 
     }, [loading])
     return (
-        <>
+        <div style={{minHeight:'90vh'}}>
             <div className='mt-3 p-4 mb-4'>
                 <center>
                     <div style={{ fontWeight: 'bolder', fontSize: '5vw' }}>{userparams['username']}</div>
@@ -82,14 +82,18 @@ const Profile = ({ user_id, userparams }) => {
             <Container>
                 <Row className="g-3 mb-3">
                     <Col xs={{ offset: 3, span: 3 }}>
-                        <FloatingLabel label="Start Date">
+                        <FloatingLabel label="Purchase Date">
                             <FormControl
-                                type="date"
+                                as = 'select'
                                 onChange={(e) => {
                                     setStartDate(e.target.value);
                                     setLoading(true);
-                                }}
-                                max={end_date} />
+                                }}>
+                                    <option value='now'>Days</option>
+                                    <option value='now'>Week</option>
+                                    <option value='now'>Month</option>
+                                    <option value='now'>Year</option>
+                                </FormControl>
                         </FloatingLabel>
                     </Col>
                     <Col xs={3}>
@@ -191,7 +195,7 @@ const Profile = ({ user_id, userparams }) => {
                     </Row>
                 }
             </Container>
-        </>
+        </div>
     );
 }
 export default Profile;

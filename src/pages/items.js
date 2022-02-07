@@ -96,7 +96,7 @@ const Items = ({ user_id }) => {
         
     }, [loading]);
     return (
-        <>
+        <div style={{minHeight:'90vh'}}>
             <Container>
                 <Row>
                     <Col md={5} className="g-3 mb-3">
@@ -257,7 +257,7 @@ const Items = ({ user_id }) => {
                     </Modal.Footer>
                 </Form>
             </Modal>
-        </>
+        </div>
     );
 };
 export default Items;

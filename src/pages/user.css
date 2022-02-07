@@ -19,9 +19,11 @@
 }
 .left-image{
   width: 30%;
+  height: 90vh;
   background: url('https://toki-tracker.herokuapp.com/images/toki.png') no-repeat center;
   background-size: 100%;
   background-color: black;
+  
 }
 .login-layout{
   display: flex;

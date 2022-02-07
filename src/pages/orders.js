@@ -120,7 +120,7 @@ const Orders = ({ user_id }) => {
 
     }, [loading]);
     return (
-        <>
+        <div style={{minHeight:'90vh'}}>
             <Container>
                 <Row>
                     <Col xs={5} className="g-3 mb-3">
@@ -236,7 +236,7 @@ const Orders = ({ user_id }) => {
 
             <Modal show={addOrder || editOrder}
                 // @ts-ignore
-                fullscreen={addOrder} size='lg' onHide={() => {
+                size='lg' onHide={() => {
                     setAddOrder(false);
                     setEditOrder(false);
                 }}>
@@ -372,7 +372,7 @@ const Orders = ({ user_id }) => {
                     </Modal.Footer>
                 </Form>
             </Modal>
-        </>
+        </div>
 
     )
 }
