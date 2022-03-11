@@ -68,7 +68,6 @@ const OrderDetail = ({ order_id, order_name, vendor, total, subtotal, tax, savin
         setLoading(true);
         reloadOrders(true);
     }
-    console.log(user_id, order_id);
     useEffect(() => {
         let getOrders = (async () => {
             const res = await axios.get(`${backendHost}/orders/${order_id}`, {
@@ -80,7 +79,6 @@ const OrderDetail = ({ order_id, order_name, vendor, total, subtotal, tax, savin
             if (res.status === 203) {
                 alert(res.data.msg);
             } else if (res.status === 200) {
-                console.log(res.data)
                 setItemList(res.data);
             }else{
                 alert('Internal server error');

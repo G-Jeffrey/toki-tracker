@@ -84,7 +84,7 @@ const images_urls = [
     ['https://i.imgur.com/Bh2Ifdn.jpeg', 'choobies#6274'],
     ['https://i.imgur.com/9cb0jtE.jpeg', 'choobies#6274']
 ];
-const LandingPage = () => {
+const LandingPage = ({user_id}) => {
     const [loading, setLoading] = useState(false);
     useEffect(() => {
         AOS.init({ duration: 1000 });
@@ -114,7 +114,12 @@ const LandingPage = () => {
                         </Col>
                     </Row>
                     <div className="d-grid gap-2" style={{ marginBottom: '5vh' }}>
-                        <Button variant="outline-dark" size="lg" href="./signup">Sign up!</Button>
+                        {user_id ?
+                        <Button variant="outline-dark" size="lg" href= "./orders">See Orders</Button>
+                        :
+                        <Button variant="outline-dark" size="lg" href= "./signup">Sign up</Button>
+                        }
+                        
                     </div>
                 </Container>
             </div >

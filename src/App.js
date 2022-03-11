@@ -40,7 +40,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="*" element={<div className='not_found' style={{height:'100vh', maxHeight: '500px'}}>Error 404: Page Not Found</div>} />
-          <Route path='/' element={<LandingPage/>}/>
+          <Route path='/' element={<LandingPage user_id={cookie['user_id']}/>}/>
           <Route path='/orders' element={<Orders user_id={cookie['user_id']}/>} />
           <Route path='/items' element={<Items user_id={cookie['user_id']}/>}/>
           <Route path='/login' element={<Login />} />
