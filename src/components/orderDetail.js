@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React, { useState, useEffect } from "react";
-import { Card, Row, Col, Container, Button, Modal, FloatingLabel, FormControl, Form, Table } from "react-bootstrap";
+import { Card, Row, Col, Container, Button, Modal, FloatingLabel, FormControl, Form, Table, Spinner } from "react-bootstrap";
 import { AiOutlineEdit } from "react-icons/ai";
 import axios from 'axios';
 const backendHost = process.env.REACT_APP_BACKEND_URL;
@@ -16,6 +16,7 @@ const OrderDetail = ({ order_id, order_name, vendor, total, subtotal, tax, savin
     const [loading, setLoading] = useState(false);
     const [category, setCategory] = useState("Keyboard");
     const [confirmation, setConfirmation] = useState(false);
+    const [itemLoad, setItemLoad] = useState(false);
     let i = 1;
     const sendEdit = async (e) =>{
 
@@ -54,6 +55,7 @@ const OrderDetail = ({ order_id, order_name, vendor, total, subtotal, tax, savin
     }
     const submitItem = async (e) => {
         e.preventDefault();
+        setItemLoad(true);
         const add_request = await axios.post(`${backendHost}/orders/${order_id}`, {
             item_name: itemName,
             item_price: price,
@@ -63,6 +65,7 @@ const OrderDetail = ({ order_id, order_name, vendor, total, subtotal, tax, savin
         // reset state and reload
         setAddItem(false);
         setPrice(0);
+        setItemLoad(false);
         setCategory("Keyboard");
         setItemName("");
         setLoading(true);
@@ -226,7 +229,7 @@ const OrderDetail = ({ order_id, order_name, vendor, total, subtotal, tax, savin
                         </FloatingLabel>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button type='submit'>Add</Button>
+                        <Button type='submit' disabled={itemLoad}>{itemLoad ? <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" /> : "Add"}</Button>
                     </Modal.Footer>
                 </Form>
             </Modal>
