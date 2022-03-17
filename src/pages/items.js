@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Col, Row, Container, Table, Form, FloatingLabel, FormControl, InputGroup, Button, Modal, Spinner, Placeholder } from "react-bootstrap";
-import { MdSearch, MdDelete, MdEdit } from "react-icons/md";
+import { MdDelete, MdEdit } from "react-icons/md";
 const backendHost = process.env.REACT_APP_BACKEND_URL;
 const Items = ({ user_id }) => {
     const [query, setQuery] = useState('');
@@ -104,8 +104,7 @@ const Items = ({ user_id }) => {
                             <InputGroup size='lg' >
                                 <FormControl
                                     style={{
-                                        borderTopLeftRadius: '25px',
-                                        borderBottomLeftRadius: '25px'
+                                        borderRadius: '15px',
                                     }}
                                     type='text'
                                     value={query}
@@ -113,11 +112,6 @@ const Items = ({ user_id }) => {
                                         setQuery(e.target.value);
                                         setLoading(true);
                                     }} />
-                                <Button variant='outline-dark'
-                                    style={{
-                                        borderTopRightRadius: '25px',
-                                        borderBottomRightRadius: '25px'
-                                    }}><MdSearch size='30px' /></Button>
                             </InputGroup>
                         </FloatingLabel>
                     </Col>
