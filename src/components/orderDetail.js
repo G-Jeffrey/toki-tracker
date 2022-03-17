@@ -1,11 +1,11 @@
 // @ts-nocheck
 import React, { useState, useEffect } from "react";
-import { Card, Row, Col, Container, Button, Modal, FloatingLabel, FormControl, Form, Table, Spinner } from "react-bootstrap";
-import { AiOutlineEdit } from "react-icons/ai";
+import { Card, Row, Col, Container, Button, Modal, FloatingLabel, FormControl, Form, Table, Spinner, ButtonGroup } from "react-bootstrap";
+import { AiOutlineEdit, AiOutlinePlus } from "react-icons/ai";
 import axios from 'axios';
 const backendHost = process.env.REACT_APP_BACKEND_URL;
 const OrderDetail = ({ order_id, order_name, vendor, total, subtotal, tax, savings, shipping, arrival_date, date_of_purchase, image_url, items, user_id, reloadOrders, editOrder, setEditOrder, editParams }) => {
-    items = parseInt(items); 
+    items = parseInt(items);
     date_of_purchase = (new Date(date_of_purchase)).toISOString().split('T')[0];
     arrival_date = (new Date(arrival_date)).toISOString().split('T')[0];
     const [show, setShow] = useState(false);
@@ -18,7 +18,7 @@ const OrderDetail = ({ order_id, order_name, vendor, total, subtotal, tax, savin
     const [confirmation, setConfirmation] = useState(false);
     const [itemLoad, setItemLoad] = useState(false);
     let i = 1;
-    const sendEdit = async (e) =>{
+    const sendEdit = async (e) => {
 
         editParams[0](order_name);
         editParams[1](vendor);
@@ -38,14 +38,14 @@ const OrderDetail = ({ order_id, order_name, vendor, total, subtotal, tax, savin
             alert('Not logged in');
             return;
         }
-        const delete_req = await axios.delete(`${backendHost}/orders/`,{
-            data:{
+        const delete_req = await axios.delete(`${backendHost}/orders/`, {
+            data: {
                 order_id: order_id
             }
         });
-        if(delete_req.status===200){
+        if (delete_req.status === 200) {
             alert(`${order_name} has been deleted`);
-        }else if(delete_req.status===203){
+        } else if (delete_req.status === 203) {
             alert(`${delete_req.data.msg}`);
         }
         console.log(delete_req);
@@ -83,7 +83,7 @@ const OrderDetail = ({ order_id, order_name, vendor, total, subtotal, tax, savin
                 alert(res.data.msg);
             } else if (res.status === 200) {
                 setItemList(res.data);
-            }else{
+            } else {
                 alert('Internal server error');
             }
             setLoading(false);
@@ -102,16 +102,22 @@ const OrderDetail = ({ order_id, order_name, vendor, total, subtotal, tax, savin
                 <Card.Body>
                     <Container>
                         <Row>
-                            <Col xs={10}>
+                            <Col xs={9}>
                                 <Card.Title>Total : ${total}</Card.Title>
                             </Col>
-
-                            <Col xs={2}>
+                            <Col xs={3}>
+                                <ButtonGroup>
+                            <Button variant="outline-dark" onClick={() => {
+                                    setAddItem(true)
+                                }}>
+                                    <AiOutlinePlus fontSize={'2rem'} />
+                                </Button>
                                 <Button variant="outline-dark" onClick={() => {
                                     setShow(true)
                                 }}>
                                     <AiOutlineEdit fontSize={'2rem'} />
                                 </Button>
+                                </ButtonGroup>
                             </Col>
 
                         </Row>
@@ -241,10 +247,10 @@ const OrderDetail = ({ order_id, order_name, vendor, total, subtotal, tax, savin
                     Are you sure you want to delete order : "<strong>{order_name}</strong>"?
                 </Modal.Body>
                 <Form onSubmit={deleteOrder}>
-                <Modal.Footer>
+                    <Modal.Footer>
                         <Button variant="secondary" onClick={() => setConfirmation(false)}>No</Button>
                         <Button type="submit">Yes</Button>
-                </Modal.Footer>
+                    </Modal.Footer>
                 </Form>
             </Modal>
         </>

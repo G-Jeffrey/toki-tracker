@@ -93,14 +93,14 @@ const Items = ({ user_id }) => {
             setLoading(false);
         });
         getOrders();
-        
+
     }, [loading]);
     return (
-        <div style={{minHeight:'90vh'}}>
+        <div style={{ minHeight: '90vh' }}>
             <Container>
                 <Row>
                     <Col md={5} className="g-3 mb-3">
-                        <FloatingLabel label='Search'>
+                    <FloatingLabel label={query.length===0 ? 'Search' : ""}>
                             <InputGroup size='lg' >
                                 <FormControl
                                     style={{
